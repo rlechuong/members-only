@@ -1,0 +1,27 @@
+{
+  "name": "members-only",
+  "version": "1.0.0",
+  "description": "https://www.theodinproject.com/lessons/node-path-nodejs-members-only",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rlechuong/members-only.git"
+  },
+  "keywords": [],
+  "author": "rlechuong",
+  "license": "UNLICENSED",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/rlechuong/members-only/issues"
+  },
+  "homepage": "https://github.com/rlechuong/members-only#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "pg": "^8.22.0"
+  }
+}
