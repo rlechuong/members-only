@@ -1,8 +1,12 @@
-import express from "express";
 import path from "node:path";
+import express from "express";
 import session from "express-session";
 import pgSession from "connect-pg-simple";
+import passport from "passport";
 import pool from "./db/pool.js";
+
+// Side Effect: Registers passport strategy and serialization
+import "./config/passport.js";
 
 const pgSessionStore = pgSession(session);
 
@@ -23,6 +27,9 @@ app.use(
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
   }),
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get("/", (req, res) => {
   res.render("index");
