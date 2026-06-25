@@ -4,6 +4,7 @@ import session from "express-session";
 import pgSession from "connect-pg-simple";
 import passport from "passport";
 import pool from "./db/pool.js";
+import { authRouter } from "./routes/authRouter.js";
 
 // Side Effect: Registers passport strategy and serialization
 import "./config/passport.js";
@@ -15,6 +16,8 @@ const PORT = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(import.meta.dirname, "views"));
+
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(import.meta.dirname, "public")));
 
@@ -34,6 +37,8 @@ app.use(passport.session());
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+app.use("/", authRouter);
 
 app.listen(PORT, () => {
   console.log(`Server Listening On Port ${PORT}`);
