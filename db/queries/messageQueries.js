@@ -18,4 +18,16 @@ const getAllMessages = async () => {
   return rows;
 };
 
-export { getAllMessages };
+const createMessage = async (messageData) => {
+  const { rows } = await pool.query(
+    `
+    INSERT INTO messages (title, body, author_id)
+    VALUES ($1, $2, $3)
+    RETURNING id, title, body, author_id, created_at
+    `,
+    [messageData.title, messageData.body, messageData.author_id],
+  );
+  return rows[0];
+};
+
+export { getAllMessages, createMessage };

@@ -13,6 +13,7 @@
         <div class="navbar-links">
           <% if (user) { %>
             <span>Welcome, <%= user.first_name %></span>
+            <a href="/messages/new">Create Message</a>
             <form action="/logout" method="POST" class="logout-form">
               <button type="submit">Log Out</button>
             </form>
