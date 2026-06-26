@@ -29,4 +29,14 @@ const postSignup = async (req, res, next) => {
   }
 };
 
-export { getSignupForm, postSignup };
+const getLoginForm = (req, res) => {
+  const messages = req.session.messages || [];
+  req.session.messages = [];
+  res.render("login", {
+    errors: messages.length > 0 ? [messages[messages.length - 1]] : [],
+    formData: {},
+  });
+  return;
+};
+
+export { getSignupForm, postSignup, getLoginForm };
