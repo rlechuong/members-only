@@ -1,6 +1,37 @@
 <%- include("partials/header.ejs") %>
 
 <h1>Welcome to Members Only</h1>
-<p>A community for members who want to post anonymously, sort of.</p>
+
+<% if (!user) { %>
+  <p>Log in or sign up to join the conversation.</p>
+<% } else if (user.role_rank === 0) { %>
+  <p>Want to see who wrote these? <a href="/join-club">Join the club</a>.</p>
+<% } %>
+
+<% if (messages.length === 0) { %>
+  <p>No messages yet.</p>
+<% } else { %>
+  <% const dateFormatter = new Intl.DateTimeFormat("en-us", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  }); %>
+  <ul class="message-list">
+    <% messages.forEach(message => { %>
+      <li class="message">
+        <h2 class="message-title"><%= message.title %></h2>
+        <p class="message-body"><%= message.body %></p>
+        <% if (user && user.role_rank >= 1) { %>
+          <p class="message-meta">
+            By <%= message.author_first_name || "Deleted User" %> 
+            <%= message.author_last_name || "" %> on <%= dateFormatter.format(message.created_at) %>
+          </p>
+        <% } %>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
 
 <%- include ("partials/footer.ejs") %>

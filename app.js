@@ -5,6 +5,7 @@ import pgSession from "connect-pg-simple";
 import passport from "passport";
 import pool from "./db/pool.js";
 import { authRouter } from "./routes/authRouter.js";
+import { messageRouter } from "./routes/messageRouter.js";
 
 // Side Effect: Registers passport strategy and serialization
 import "./config/passport.js";
@@ -39,9 +40,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use("/", messageRouter);
 
 app.use("/", authRouter);
 
