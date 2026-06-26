@@ -11,8 +11,15 @@
       <nav class="navbar">
         <a href="/" class="navbar-brand">Members Only</a>
         <div class="navbar-links">
-          <a href="/login">Log In</a>
-          <a href="/signup">Sign Up</a>
+          <% if (user) { %>
+            <span>Welcome, <%= user.first_name %></span>
+            <form action="/logout" method="POST" class="logout-form">
+              <button type="submit">Log Out</button>
+            </form>
+          <% } else { %>
+            <a href="/login">Log In</a>
+            <a href="/signup">Sign Up</a>
+          <% } %>
         </div>
       </nav>
     </header>

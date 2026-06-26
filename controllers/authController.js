@@ -39,4 +39,13 @@ const getLoginForm = (req, res) => {
   return;
 };
 
-export { getSignupForm, postSignup, getLoginForm };
+const postLogout = (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
+
+export { getSignupForm, postSignup, getLoginForm, postLogout };
