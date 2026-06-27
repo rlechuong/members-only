@@ -22,7 +22,7 @@ const postSignup = async (req, res, next) => {
       if (err) {
         return next(err);
       }
-      return res.redirect("/");
+      res.redirect("/");
     });
   } catch (err) {
     return next(err);
@@ -36,7 +36,6 @@ const getLoginForm = (req, res) => {
     errors: messages.length > 0 ? [messages[messages.length - 1]] : [],
     formData: {},
   });
-  return;
 };
 
 const postLogout = (req, res, next) => {

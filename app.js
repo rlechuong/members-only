@@ -6,6 +6,7 @@ import passport from "passport";
 import pool from "./db/pool.js";
 import { authRouter } from "./routes/authRouter.js";
 import { messageRouter } from "./routes/messageRouter.js";
+import { userRouter } from "./routes/userRouter.js";
 
 // Side Effect: Registers passport strategy and serialization
 import "./config/passport.js";
@@ -43,6 +44,8 @@ app.use((req, res, next) => {
 app.use("/", messageRouter);
 
 app.use("/", authRouter);
+
+app.use("/", userRouter);
 
 app.listen(PORT, () => {
   console.log(`Server Listening On Port ${PORT}`);

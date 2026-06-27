@@ -45,9 +45,13 @@ const createUser = async (userData) => {
   return rows[0];
 };
 
+const updateUserRole = async (userId, roleId) => {
+  await pool.query("UPDATE users SET role_id = $1 WHERE id = $2", [roleId, userId]);
+};
+
 const getRoleIdByName = async (roleName) => {
   const { rows } = await pool.query("SELECT id FROM roles WHERE name = $1", [roleName]);
   return rows[0].id;
 };
 
-export { findUserByEmail, findUserById, createUser, getRoleIdByName };
+export { findUserByEmail, findUserById, createUser, updateUserRole, getRoleIdByName };
