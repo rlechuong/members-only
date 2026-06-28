@@ -1,5 +1,5 @@
 import { validationResult, matchedData } from "express-validator";
-import { getAllMessages, createMessage } from "../db/queries/messageQueries.js";
+import { getAllMessages, createMessage, deleteMessage } from "../db/queries/messageQueries.js";
 
 const getHomePage = async (req, res, next) => {
   try {
@@ -29,4 +29,14 @@ const postNewMessage = async (req, res, next) => {
   }
 };
 
-export { getHomePage, getNewMessageForm, postNewMessage };
+const postDeleteMessage = async (req, res, next) => {
+  const messageId = req.params.id;
+  try {
+    await deleteMessage(messageId);
+    res.redirect("/");
+  } catch (err) {
+    return next(err);
+  }
+};
+
+export { getHomePage, getNewMessageForm, postNewMessage, postDeleteMessage };

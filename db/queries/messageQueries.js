@@ -30,4 +30,8 @@ const createMessage = async (messageData) => {
   return rows[0];
 };
 
-export { getAllMessages, createMessage };
+const deleteMessage = async (messageId) => {
+  await pool.query("DELETE FROM messages WHERE id = $1", [messageId]);
+};
+
+export { getAllMessages, createMessage, deleteMessage };

@@ -6,7 +6,7 @@ const getJoinClubForm = (req, res) => {
 
 const postJoinClub = async (req, res, next) => {
   if (req.body.passcode !== process.env.CLUB_PASSCODE) {
-    return res.render("joinClub", { error: "Incorrect password." });
+    return res.render("joinClub", { error: "Incorrect passcode." });
   }
 
   try {
@@ -18,4 +18,22 @@ const postJoinClub = async (req, res, next) => {
   }
 };
 
-export { getJoinClubForm, postJoinClub };
+const getAdminPasscodeForm = (req, res) => {
+  res.render("adminPasscode", { error: null });
+};
+
+const postAdminPasscode = async (req, res, next) => {
+  if (req.body.passcode !== process.env.ADMIN_PASSCODE) {
+    return res.render("adminPasscode", { error: "Incorrect passcode." });
+  }
+
+  try {
+    const roleId = await getRoleIdByName("admin");
+    await updateUserRole(req.user.id, roleId);
+    res.redirect("/");
+  } catch (err) {
+    return next(err);
+  }
+};
+
+export { getJoinClubForm, postJoinClub, getAdminPasscodeForm, postAdminPasscode };
