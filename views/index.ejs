@@ -1,14 +1,16 @@
 <%- include("partials/header.ejs") %>
 
-<h1>Welcome to Members Only</h1>
+<div class="page-intro">
+  <h1>Welcome to Members Only</h1>
 
-<% if (!user) { %>
-  <p>Log in or sign up to join the conversation.</p>
-<% } else if (user.role_rank === 0) { %>
-  <p>Want to see who wrote these? <a href="/join-club">Join the club</a>!</p>
-<% } else if (user.role_rank === 1) { %>
-  <p>Feeling strong? <a href="/admin-passcode">Become an admin</a>.</p>
-<% } %>
+  <% if (!user) { %>
+    <p>Log in or sign up to join the conversation.</p>
+  <% } else if (user.role_rank === 0) { %>
+    <p>Want to see who wrote these? <a href="/join-club">Join the club</a>!</p>
+  <% } else if (user.role_rank === 1) { %>
+    <p>Feeling strong? <a href="/admin-passcode">Become an admin</a>.</p>
+  <% } %>
+</div>
 
 <% if (messages.length === 0) { %>
   <p>No messages yet.</p>
@@ -27,7 +29,7 @@
         <p class="message-body"><%= message.body %></p>
         <% if (user && user.role_rank >= 1) { %>
           <p class="message-meta">
-            By <%= message.author_first_name || "Deleted User" %> 
+            <%= message.author_first_name || "Deleted User" %> 
             <%= message.author_last_name || "" %> on <%= dateFormatter.format(message.created_at) %>
           </p>
         <% } %>

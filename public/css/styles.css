@@ -1,0 +1,382 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*:not(dialog) {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* Design Tokens */
+
+:root {
+  --color-bg: #1c1b19;
+  --color-text: #f4efe6;
+  --color-accent: #8b2e2e;
+  --color-accent-text: #e6967e;
+  --color-surface: #3a3530;
+  --color-muted: #9c9388;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Inter", sans-serif;
+
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+
+  --content-width: 700px;
+}
+
+/* Base Elements */
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+a {
+  color: var(--color-accent-text);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: var(--font-body);
+  background-color: var(--color-accent);
+  color: var(--color-text);
+  border: none;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+input,
+textarea {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-muted);
+  border-radius: 4px;
+  padding: var(--space-sm);
+}
+
+textarea {
+  resize: vertical;
+  width: 100%;
+}
+
+/* Layout */
+
+main {
+  flex: 1;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+  width: 100%;
+}
+
+main > * + * {
+  margin-top: var(--space-md);
+}
+
+footer {
+  text-align: center;
+  padding: var(--space-lg) var(--space-md);
+  color: var(--color-muted);
+}
+
+/* Navbar */
+
+header {
+  position: sticky;
+  top: 0;
+  background-color: var(--color-surface);
+  z-index: 10;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-surface);
+}
+
+.navbar-brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.navbar-brand:hover {
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.navbar-links form {
+  margin: 0;
+}
+
+.navbar-links a,
+.navbar-links button {
+  font-size: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-accent-text);
+  cursor: pointer;
+}
+
+.navbar-links a:hover,
+.navbar-links button:hover {
+  text-decoration: underline;
+}
+
+.navbar-greeting {
+  padding-right: var(--space-md);
+  border-right: 1px solid var(--color-muted);
+}
+
+/* Messages */
+
+.message-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.message {
+  background-color: var(--color-surface);
+  border-radius: 6px;
+  padding: var(--space-md);
+}
+
+.message-title {
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.message-title::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-accent-text);
+  flex-shrink: 0;
+}
+
+.message-meta {
+  margin-top: var(--space-sm);
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.message form {
+  display: block;
+  width: fit-content;
+  margin: var(--space-sm) 0 0;
+}
+
+.message form button {
+  font-size: 0.875rem;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-accent-text);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.message form button:hover {
+  text-decoration: underline;
+}
+
+/* Forms */
+
+.form-heading {
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+form:not(.logout-form):not(.navbar-links form):not(.message form) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+form:not(.logout-form):not(.navbar-links form) button[type="submit"] {
+  margin-top: var(--space-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+label {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.form-errors {
+  list-style: none;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-surface);
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-text);
+  margin: 0 auto var(--space-md);
+  width: fit-content;
+}
+
+.form-error {
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-surface);
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-text);
+  margin: 0 auto var(--space-md);
+  width: fit-content;
+}
+
+.cancel-link {
+  display: block;
+  width: fit-content;
+  margin: var(--space-lg) auto 0;
+  color: var(--color-muted);
+  text-decoration: underline;
+}
+
+.cancel-link:hover {
+  opacity: 0.85;
+}
+
+/* Page-Specific */
+
+.page-intro {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.demo-note {
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+  }
+
+  .navbar-greeting {
+    padding-right: 0;
+    border-bottom: 1px solid var(--color-muted);
+    border-right: none;
+  }
+
+  main {
+    padding: var(--space-md);
+  }
+}

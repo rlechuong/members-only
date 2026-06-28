@@ -1,20 +1,22 @@
 <%- include("partials/header.ejs") %>
 
-<h1>Admin Passcode</h1>
+<h1 class="form-heading">Admin Passcode</h1>
 
 <% if (error) { %>
-  <p><%= error %></p>
+  <p class="form-error"><%= error %></p>
 <% } %>
 
 <form action="/admin-passcode" method="POST" class="admin-passcode-form">
-	<label for="passcode">Passcode</label>
-	<input id="passcode" name="passcode" type="password" required />
+	<div class="form-group">
+		<label for="passcode">Passcode</label>
+		<input id="passcode" name="passcode" type="password" required />
+	</div>
 
 	<button type="submit">Verify</button>
 </form>
 
-<p class="demo-note">For demo purposes, the passcode is: <%= process.env.ADMIN_PASSCODE %></p>
-
 <a href="/" class="cancel-link">Cancel</a>
+
+<p class="demo-note">For demo purposes, the passcode is: <strong><%= process.env.ADMIN_PASSCODE %></strong></p>
 
 <%- include("partials/footer.ejs") %>

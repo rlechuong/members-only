@@ -1,6 +1,6 @@
 <%- include("partials/header.ejs") %>
 
-<h1>New Message</h1>
+<h1 class="form-heading">New Message</h1>
 
 <% if (errors.length > 0) { %>
   <ul class="form-errors">
@@ -11,17 +11,21 @@
 <% } %>
 
 <form action="/messages" method="POST" class="new-message-form">
-  <label for="title">Title</label>
-  <input
-    id="title"
-    name="title"
-    type="text"
-    value="<%= formData.title || '' %>"
-    required
-  />
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      id="title"
+      name="title"
+      type="text"
+      value="<%= formData.title || '' %>"
+      required
+    />
+  </div>
 
-  <label for="body">Body</label>
-  <textarea id="body" name="body" required></textarea>
+  <div class="form-group">
+    <label for="body">Body</label>
+    <textarea id="body" name="body" required></textarea>
+  </div>
 
   <button type="submit">Post</button>
 </form>

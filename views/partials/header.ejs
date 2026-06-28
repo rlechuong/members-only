@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <title>Members Only</title>
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
@@ -12,7 +15,7 @@
         <a href="/" class="navbar-brand">Members Only</a>
         <div class="navbar-links">
           <% if (user) { %>
-            <span>Welcome, <%= user.first_name %></span>
+            <span class="navbar-greeting">Welcome, <%= user.first_name %></span>
             <a href="/messages/new">Create Message</a>
             <form action="/logout" method="POST" class="logout-form">
               <button type="submit">Log Out</button>
