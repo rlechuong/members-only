@@ -12,7 +12,7 @@ const postJoinClub = async (req, res, next) => {
   try {
     const roleId = await getRoleIdByName("member");
     await updateUserRole(req.user.id, roleId);
-    res.redirect("/");
+    return res.redirect("/");
   } catch (err) {
     return next(err);
   }
@@ -30,7 +30,7 @@ const postAdminPasscode = async (req, res, next) => {
   try {
     const roleId = await getRoleIdByName("admin");
     await updateUserRole(req.user.id, roleId);
-    res.redirect("/");
+    return res.redirect("/");
   } catch (err) {
     return next(err);
   }

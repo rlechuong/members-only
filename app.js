@@ -47,6 +47,15 @@ app.use("/", authRouter);
 
 app.use("/", userRouter);
 
+app.use((err, req, res, next) => {
+  console.error(err);
+  res
+    .status(err.statusCode || 500)
+    .render("error", {
+      message: err.statusCode ? err.message : "Something went wrong. Please try again.",
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`Server Listening On Port ${PORT}`);
 });

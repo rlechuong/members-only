@@ -23,7 +23,7 @@ const postNewMessage = async (req, res, next) => {
   try {
     const { title, body } = matchedData(req);
     const message = await createMessage({ title, body, author_id: req.user.id });
-    res.redirect("/");
+    return res.redirect("/");
   } catch (err) {
     return next(err);
   }
@@ -33,7 +33,7 @@ const postDeleteMessage = async (req, res, next) => {
   const messageId = req.params.id;
   try {
     await deleteMessage(messageId);
-    res.redirect("/");
+    return res.redirect("/");
   } catch (err) {
     return next(err);
   }

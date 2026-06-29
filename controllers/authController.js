@@ -22,7 +22,7 @@ const postSignup = async (req, res, next) => {
       if (err) {
         return next(err);
       }
-      res.redirect("/");
+      return res.redirect("/");
     });
   } catch (err) {
     return next(err);
@@ -43,7 +43,7 @@ const postLogout = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect("/");
+    return res.redirect("/");
   });
 };
 
