@@ -49,13 +49,11 @@ app.use("/", userRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);
-  res
-    .status(err.statusCode || 500)
-    .render("error", {
-      message: err.statusCode ? err.message : "Something went wrong. Please try again.",
-    });
+  res.status(err.statusCode || 500).render("error", {
+    message: err.statusCode ? err.message : "Something went wrong. Please try again.",
+  });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server Listening On Port ${PORT}`);
 });
